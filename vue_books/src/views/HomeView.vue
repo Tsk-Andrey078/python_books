@@ -135,7 +135,7 @@
 
 <script>
 import axios from 'axios';
-
+import { service } from '@/api';
 export default {
     data() {
         return {
@@ -146,6 +146,9 @@ export default {
             post_update: []
         }
     },
+    setup () {
+        return {service}
+    },
     mounted() {
         this.get_data()
 
@@ -155,7 +158,7 @@ export default {
             event.preventDefault()
             const formData = new FormData(form)
             try {
-                await axios.post(`${this.base_url}/api/book/`, formData).then((response) => {
+                await service.post(`/api/book/`, formData).then((response) => {
                     console.log(response)
                 }).catch((error) => {
                     console.log(error)
@@ -200,7 +203,7 @@ export default {
                 event.preventDefault()
                 const formData = new FormData(form)
                 try {
-                    await axios.put(`${this.base_url}/api/book/${id_b}/`, formData).then((response) => {
+                    await service.put(`/api/book/${id_b}/`, formData).then((response) => {
                         console.log(response)
                     }).catch((error) => {
                         console.log(error)
