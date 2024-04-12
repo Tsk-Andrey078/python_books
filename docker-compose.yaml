@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  vue_project:
+    build:
+      context: ./vue_books
+    ports:
+      - "5173:80"  
+    volumes:
+      - ./vue_books:/app  
+
+  django_project:
+    build:
+      context: ./python_books
+    ports:
+      - "8001:8001"  
+    volumes:
+      - ./python_books:/app 
